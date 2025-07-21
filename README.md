@@ -42,6 +42,8 @@ Note: Most features are disabled by default. Run /moulberrystweaks to access the
         - Dumps the entity attributes of the player entity. Useful for developers
     - Debug Render
         - Allows hiding/clearing debug renders sent by the server using the debug_render protocol. Useful for developers
+    - Dump Bossbar Json
+        - Prints the serialized json of the bossbar's Name, Useful for developers
 
 # Additional protocols
 See GitHub repository for implementations

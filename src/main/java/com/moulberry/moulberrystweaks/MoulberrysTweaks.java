@@ -73,6 +73,7 @@ public class MoulberrysTweaks implements ModInitializer {
 
     public static boolean autoVanishPlayersRegistered = false;
     public static boolean dumpHeldJsonRegistered = false;
+    public static boolean dumpBossbarJsonRegistered = false;
     public static boolean generateFontWidthTableRegistered = false;
     public static boolean dumpPlayerAttributesRegistered = false;
     public static boolean debugRenderRegistered = false;
@@ -92,6 +93,7 @@ public class MoulberrysTweaks implements ModInitializer {
         9. Keybind to show components of item
         10. Command to dump held item json
         11. Command to dump modified player attributes
+        12. Command to dump bossbar's name json
      */
 
 	@Override
@@ -189,6 +191,30 @@ public class MoulberrysTweaks implements ModInitializer {
                               System.out.println(output);
                               return 0;
                           });
+                dispatcher.register(command);
+            }
+
+            dumpBossbarJsonRegistered = config.commands.dumpBossbarJson; // Not sure if it works.
+            if (config.commands.dumpBossbarJson) {
+                command = ClientCommandManager.literal("dumpbossbarjson")
+                        .executes(commandContext -> {
+                            var client = MinecraftClient.getInstance();
+                            var bossBarHud = client.inGameHud.getBossBarHud();
+                            Map<UUID, ClientBossBar> bossBars = bossBarHud.getBossBars();
+
+                            JsonArray array = new JsonArray();
+
+                            for (ClientBossBar bar : bossBars.values()) {
+                                Component name = bar.getName();
+                                JsonElement json = ComponentSerialization.CODEC
+                                        .encodeStart(JsonOps.INSTANCE, name)
+                                        .getOrThrow(false, System.err::println);
+                                array.add(json);
+                            }
+
+                            System.out.println(array);
+                            return 0;
+                        });
                 dispatcher.register(command);
             }
 
