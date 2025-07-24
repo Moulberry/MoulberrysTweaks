@@ -22,6 +22,7 @@
     "debugmovement.MixinLivingEntity",
     "debugshape.MixinDebugScreenOverlay",
     "debugshape.MixinLevelRenderer",
+    "addopenreportbutton.MixinDisconnectedScreen",
     "inventorywidgets.MixinAbstractContainerScreen",
     "inventorywidgets.MixinConnection",
     "packetexceptionlogging.MixinConnection",

@@ -1,6 +1,7 @@
 package com.moulberry.moulberrystweaks.mixin.confirmdisconnect;
 
 import com.moulberry.moulberrystweaks.MoulberrysTweaks;
+import com.moulberry.moulberrystweaks.Translations;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.Screen;
@@ -31,7 +32,7 @@ public class MixinPauseScreen extends Screen {
     public void onDisconnect(CallbackInfo ci) {
         if (MoulberrysTweaks.config.gameplay.confirmDisconnect && this.disconnectButton != null && !this.confirmingDisconnect && !this.minecraft.isLocalServer()) {
             this.disconnectButton.active = true;
-            this.disconnectButton.setMessage(Component.translatable("moulberrystweaks.confirm_disconnect"));
+            this.disconnectButton.setMessage(Translations.CONFIRM_DISCONNECT);
             this.confirmingDisconnect = true;
             ci.cancel();
         }

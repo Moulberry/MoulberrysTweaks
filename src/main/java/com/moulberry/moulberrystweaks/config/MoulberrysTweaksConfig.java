@@ -84,6 +84,10 @@ public class MoulberrysTweaksConfig {
         @LatticeWidgetButton
         public boolean debugMovement = false;
 
+        @LatticeOption(title = "moulberrystweaks.config.debugging.add_open_report_file", description = "moulberrystweaks.config.debugging.add_open_report_file.description")
+        @LatticeWidgetButton
+        public boolean addOpenReportFileButton = true;
+
         public static class Inventory {
             @LatticeOption(title = "moulberrystweaks.config.debugging.inventory.item_component_widget", description = "!!.description")
             @LatticeWidgetKeybind
@@ -125,11 +129,11 @@ public class MoulberrysTweaksConfig {
 
         private boolean hideRequiresRelogMessage() {
             return Minecraft.getInstance().player == null ||
-                (this.autoVanishPlayers == MoulberrysTweaks.autoVanishPlayersRegistered &&
-                this.dumpHeldJson == MoulberrysTweaks.dumpHeldJsonRegistered &&
-                this.generateFontWidthTable == MoulberrysTweaks.generateFontWidthTableRegistered &&
-                this.dumpPlayerAttributes == MoulberrysTweaks.dumpPlayerAttributesRegistered &&
-                this.debugRender == MoulberrysTweaks.debugRenderRegistered);
+                    (this.autoVanishPlayers == MoulberrysTweaks.autoVanishPlayersRegistered &&
+                            this.dumpHeldJson == MoulberrysTweaks.dumpHeldJsonRegistered &&
+                            this.generateFontWidthTable == MoulberrysTweaks.generateFontWidthTableRegistered &&
+                            this.dumpPlayerAttributes == MoulberrysTweaks.dumpPlayerAttributesRegistered &&
+                            this.debugRender == MoulberrysTweaks.debugRenderRegistered);
         }
     }
 
@@ -169,7 +173,8 @@ public class MoulberrysTweaksConfig {
         if (!Files.exists(configFolder)) {
             try {
                 Files.createDirectories(configFolder);
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
         }
         this.saveToFolder(configFolder);
     }
@@ -190,7 +195,8 @@ public class MoulberrysTweaksConfig {
                 } catch (IOException e) {
                     MoulberrysTweaks.LOGGER.error("Failed to backup config", e);
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
 
         this.save(primary);
@@ -206,7 +212,7 @@ public class MoulberrysTweaksConfig {
 
         try {
             Files.writeString(path, serialized, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING,
-                StandardOpenOption.CREATE, StandardOpenOption.DSYNC);
+                    StandardOpenOption.CREATE, StandardOpenOption.DSYNC);
         } catch (IOException e) {
             MoulberrysTweaks.LOGGER.error("Failed to save config", e);
         }

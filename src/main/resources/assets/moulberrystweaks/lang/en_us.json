@@ -2,7 +2,6 @@
   "moulberrystweaks.keybind": "Moulberry's Tweaks",
   "moulberrystweaks.keybind.view_components": "View Item Components",
   "moulberrystweaks.keybind.view_packets": "View Inventory Packets",
-
   "moulberrystweaks.config.gameplay": "Gameplay",
   "moulberrystweaks.config.gameplay.confirm_disconnect": "Confirm Disconnect",
   "moulberrystweaks.config.gameplay.confirm_disconnect.description": "Adds a confirmation when disconnecting from a server to avoid accidental disconnects",
@@ -10,19 +9,16 @@
   "moulberrystweaks.config.gameplay.correct_attack_indicator.description": "The attack indicator bar is inaccurate. It resets internally whenever you swing your arms, but will still visually show a full bar. This feature makes the attack indicator visually show the correct value",
   "moulberrystweaks.config.gameplay.prevent_server_closing_pause_screen": "Prevent Server Closing Pause Screen",
   "moulberrystweaks.config.gameplay.prevent_server_closing_pause_screen.description": "Prevents the server from closing your pause screen and other sub-screens",
-
   "moulberrystweaks.config.loading_overlay": "Loading Overlay",
   "moulberrystweaks.config.loading_overlay.fast": "Fast Loading Overlay",
   "moulberrystweaks.config.loading_overlay.fast.description": "Speeds up the resource loading overlay by removing the fade out animation",
   "moulberrystweaks.config.loading_overlay.transparent": "Transparent Loading Overlay",
   "moulberrystweaks.config.loading_overlay.transparent.description": "Removes the background from the resource loading overlay",
-
   "moulberrystweaks.config.resource_pack": "Resource Pack",
   "moulberrystweaks.config.resource_pack.automatic_pack_reload": "Automatic Pack Reload",
   "moulberrystweaks.config.resource_pack.automatic_pack_reload.description": "Automatically reloads resourcepacks when a file in the folder is changed",
   "moulberrystweaks.config.resource_pack.disable_warnings": "Disable Warnings",
   "moulberrystweaks.config.resource_pack.disable_warnings.description": "Disables the warning screen when toggling resourcepacks with the wrong version",
-
   "moulberrystweaks.config.debugging": "Debugging",
   "moulberrystweaks.config.debugging.log_packet_exceptions": "Log Packet Exceptions",
   "moulberrystweaks.config.debugging.log_packet_exceptions.description": "Prints the stacktrace of a packet exception, useful for debugging",
@@ -35,7 +31,8 @@
   "moulberrystweaks.config.debugging.inventory.packet_debug_widget.description": "Keybind to open a widget showing incoming and outgoing inventory packets. Useful for server developers",
   "moulberrystweaks.config.debugging.debug_movement": "Send Debug Movement",
   "moulberrystweaks.config.debugging.debug_movement.description": "Sends debug movement data to the server every tick. Useful for anticheat developers (moulberrystweaks:debug_movement_data)",
-
+  "moulberrystweaks.config.debugging.add_open_report_file": "Add \"Open Report File\" Button",
+  "moulberrystweaks.config.debugging.add_open_report_file.description": "Adds an \"Open Report File\" button to the disconnect screen that directly opens the report file",
   "moulberrystweaks.config.commands": "Commands",
   "moulberrystweaks.config.commands.auto_vanish_players": "Auto Vanish Players",
   "moulberrystweaks.config.commands.auto_vanish_players.description": "Command to automatically vanish players that are nearby. Useful for parkour servers so you can see where to go",
@@ -47,6 +44,6 @@
   "moulberrystweaks.config.commands.dump_player_attributes.description": "Dumps the entity attributes of the player entity. Useful for developers",
   "moulberrystweaks.config.commands.debug_render": "Debug Render",
   "moulberrystweaks.config.commands.debug_render.description": "Allows hiding/clearing debug renders sent by the server using the debug_render protocol. Useful for developers",
-
-  "moulberrystweaks.confirm_disconnect": "Confirm Disconnect"
+  "moulberrystweaks.confirm_disconnect": "Confirm Disconnect",
+  "moulberrystweaks.open_disconnect_report_file": "Open Report File"
 }
