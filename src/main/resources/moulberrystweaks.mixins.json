@@ -25,6 +25,7 @@
     "addopenreportbutton.MixinDisconnectedScreen",
     "inventorywidgets.MixinAbstractContainerScreen",
     "inventorywidgets.MixinConnection",
+    "latency.MixinConnection",
     "packetexceptionlogging.MixinConnection",
     "preventserverclosingpausescreen.MixinClientPacketHandler"
   ],

@@ -36,13 +36,17 @@ public abstract class MixinLivingEntityRenderer extends EntityRenderer<LivingEnt
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;F)V", at = @At("RETURN"))
     public void extractRenderState(LivingEntity livingEntity, LivingEntityRenderState livingEntityRenderState, float f, CallbackInfo ci) {
         // Note: TranslucentAlphaExt is only implemented for PlayerRenderState, so this only affects players
-        if (AutoVanishPlayers.isEnabled && livingEntityRenderState instanceof TranslucentAlphaExt ext && livingEntity != Minecraft.getInstance().cameraEntity) { // Enabled
-            Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-            double distanceSq = livingEntity.getBoundingBox().distanceToSqr(camera.getPosition());
-            if (distanceSq <= 0.2*0.2) {
-                ext.moulberrystweaks$setTranslucentAlpha(0x00);
-            } else if (distanceSq < 5*5) {
-                ext.moulberrystweaks$setTranslucentAlpha((int)(distanceSq/25 * (0xFF - 0x20) + 0x20));
+        if (livingEntityRenderState instanceof TranslucentAlphaExt ext) {
+            if (AutoVanishPlayers.isEnabled && livingEntity != Minecraft.getInstance().cameraEntity) { // Enabled
+                Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
+                double distanceSq = livingEntity.getBoundingBox().distanceToSqr(camera.getPosition());
+                if (distanceSq <= 0.2*0.2) {
+                    ext.moulberrystweaks$setTranslucentAlpha(0x00);
+                } else if (distanceSq < 5*5) {
+                    ext.moulberrystweaks$setTranslucentAlpha((int)(distanceSq/25 * (0xFF - 0x20) + 0x20));
+                } else {
+                    ext.moulberrystweaks$setTranslucentAlpha(0xFF);
+                }
             } else {
                 ext.moulberrystweaks$setTranslucentAlpha(0xFF);
             }

@@ -21,6 +21,7 @@
           "com.moulberry.moulberrystweaks.MoulberrysTweaksModMenuApiImpl"
         ]
     },
+    "accessWidener": "moulberrystweaks.accesswidener",
 	"mixins": [
 		"moulberrystweaks.mixins.json"
 	],

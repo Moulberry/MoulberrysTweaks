@@ -44,6 +44,9 @@
   "moulberrystweaks.config.commands.dump_player_attributes.description": "Dumps the entity attributes of the player entity. Useful for developers",
   "moulberrystweaks.config.commands.debug_render": "Debug Render",
   "moulberrystweaks.config.commands.debug_render.description": "Allows hiding/clearing debug renders sent by the server using the debug_render protocol. Useful for developers",
+  "moulberrystweaks.config.commands.set_latency": "Set Latency",
+  "moulberrystweaks.config.commands.set_latency.description": "Adds additional latency between the client and server. Useful for testing servers with high ping. Requires operator permissions",
+
   "moulberrystweaks.confirm_disconnect": "Confirm Disconnect",
   "moulberrystweaks.open_disconnect_report_file": "Open Report File"
 }

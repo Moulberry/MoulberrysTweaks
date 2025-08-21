@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.serialization.JsonOps;
@@ -76,23 +77,11 @@ public class MoulberrysTweaks implements ModInitializer {
     public static boolean generateFontWidthTableRegistered = false;
     public static boolean dumpPlayerAttributesRegistered = false;
     public static boolean debugRenderRegistered = false;
+    public static boolean setLatencyRegistered = false;
 
     public static boolean supportsDebugMovementDataPacket = false;
 
-    /*
-        List of tweaks
-        1. Server-correct attack strength ticker
-        2. autovanishplayers command
-        3. Prevents disconnect when server removes player from team
-        4. Automatically reloads resourcepacks when resourcepack folder is modified
-        5. Faster loading overlay
-        6. Unpaused loading overlay
-        7. Generate font width command
-        8. Overlay in chest gui to show incoming/outgoing inventory packets
-        9. Keybind to show components of item
-        10. Command to dump held item json
-        11. Command to dump modified player attributes
-     */
+    public static long additionalLatencyMs = 0;
 
 	@Override
 	public void onInitialize() {
@@ -110,11 +99,13 @@ public class MoulberrysTweaks implements ModInitializer {
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
             DebugRenderManager.clear();
             AutoVanishPlayers.setServerState(ServerState.CLIENT_OR_DEFAULT);
+            additionalLatencyMs = 0;
         });
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             DebugRenderManager.clear();
             AutoVanishPlayers.setServerState(ServerState.CLIENT_OR_DEFAULT);
+            additionalLatencyMs = 0;
         });
 
         ClientWorldEvents.AFTER_CLIENT_WORLD_CHANGE.register((handler, client) -> {
@@ -322,6 +313,19 @@ public class MoulberrysTweaks implements ModInitializer {
                     return 0;
                 }));
                 command = ClientCommandManager.literal("debugrender").then(debugRenderClear).then(debugRenderHide).then(debugRenderShow);
+                dispatcher.register(command);
+            }
+
+            setLatencyRegistered = config.commands.setLatency;
+            if (config.commands.setLatency) {
+                command = ClientCommandManager.literal("setlatency")
+                                              .requires(source -> source.getPlayer() != null && source.hasPermission(2))
+                                              .then(ClientCommandManager.argument("latency", IntegerArgumentType.integer(0, 5000))
+                                              .executes(commandContext -> {
+                                                  additionalLatencyMs = IntegerArgumentType.getInteger(commandContext, "latency");
+                                                  commandContext.getSource().sendFeedback(Component.literal("Set additional latency to: " + additionalLatencyMs + "ms"));
+                                                  return 0;
+                                              }));
                 dispatcher.register(command);
             }
         });
